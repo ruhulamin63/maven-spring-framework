@@ -1,8 +1,9 @@
 package org.example;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component()
 
 public class ClassB implements InterfaceA {
 
@@ -13,7 +14,13 @@ public class ClassB implements InterfaceA {
     }
 
     public String methodA() {
+
         return "I am from ClassA: methodA() ";
+    }
+
+    @Override
+    public String methodB() {
+        return "I am from ClassA: methodB() ";
     }
 
     public ClassA getcA1() {

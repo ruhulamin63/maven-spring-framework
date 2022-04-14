@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring-webmvc" />
         <module name="spring-webmvc-hibernate-orm-noxml" />
+        <module name="spring-webmvc-etikets" />
       </profile>
     </annotationProcessing>
   </component>

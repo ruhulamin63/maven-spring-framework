@@ -10,6 +10,7 @@ public class adminController {
 
     @RequestMapping("/test")
     public String index() {
+        //This is test route
         return "adminDashboard";
     }
 }

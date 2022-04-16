@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/38b09dcc3b.js" crossorigin="anonymous"></script>
 
-<%--        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/register-page-style.css">--%>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/register-style-page.css">
 
     </head>
 
@@ -71,7 +72,7 @@
                 </div>
             </div>
             <div class="form-floating">
-                <input type="password" name="password" class="form-control my-1 " id="password_c" placeholder="Password">
+                <input type="password" name="password" class="form-control my-1 " id="password" placeholder="Password">
                 <label for="password"> <i class="fas fa-key text-success"></i> &nbsp; Password</label>
                 <div id="validationServer0Feedback_c" class="invalid-feedback mb-2">
                     <i class="fas fa-exclamation-triangle"></i> &nbsp;
@@ -79,7 +80,7 @@
                 </div>
             </div>
             <div class="form-floating">
-                <input type="password" name="repass" class="form-control my-1 " id="password" placeholder="Password">
+                <input type="password" name="repass" class="form-control my-1 " id="re_password" placeholder="Password">
                 <label for="password"> <i class="fas fa-key text-success"></i> &nbsp; Re-type Password</label>
                 <div id="validationServer0Feedback" class="invalid-feedback mb-2">
                     <i class="fas fa-exclamation-triangle"></i> &nbsp;

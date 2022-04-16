@@ -11,6 +11,11 @@ public class AdminController {
     @RequestMapping("/test")
     public String index() {
         //This is test route
-        return "adminDashboard";
+        return "admin/adminDashboard";
+    }
+
+    @RequestMapping("/home")
+    public String home() {
+        return "admin/layout/navbar/adminNavBar";
     }
 }

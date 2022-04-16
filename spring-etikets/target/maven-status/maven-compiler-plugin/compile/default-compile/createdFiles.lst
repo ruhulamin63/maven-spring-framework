@@ -1,0 +1,6 @@
+com\config\WebConfig.class
+com\controller\LoginController.class
+com\controller\TestController.class
+com\config\SecurityInitializer.class
+com\config\AppConfig.class
+com\config\SecurityConfig.class

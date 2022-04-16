@@ -11,9 +11,7 @@
           rel="stylesheet"
           href="${pageContext.request.contextPath}/resources/css/style.css">
 
-    <link type="text/css"
-          rel="stylesheet"
-          href="${pageContext.request.contextPath}/resources/css/add-user-style.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/add-user-style.css">
 </head>
 
 <body>

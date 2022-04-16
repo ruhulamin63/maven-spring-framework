@@ -25,8 +25,7 @@
 
 <div>
 
-    <div id="loginbox" style="margin-top: 50px;"
-         class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
+    <div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
 
         <div class="panel panel-info">
 
@@ -37,8 +36,7 @@
             <div style="padding-top: 30px" class="panel-body">
 
                 <!-- Login Form -->
-                <form action="${pageContext.request.contextPath}/authenticate"
-                      method="POST" class="form-horizontal">
+                <form action="${pageContext.request.contextPath}/authenticate" method="POST" class="form-horizontal">
 
                     <!-- Place for messages: error, alert etc ... -->
                     <div class="form-group">
@@ -92,9 +90,7 @@
 
                     <!-- I'm manually adding tokens ... Bro! -->
 
-                    <input type="hidden"
-                           name="${_csrf.parameterName}"
-                           value="${_csrf.token}"/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                 </form>
 

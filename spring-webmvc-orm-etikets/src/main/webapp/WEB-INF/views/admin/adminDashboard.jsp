@@ -6,6 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="com.util.SortUtils" %>
+<%@ page import="com.util.OperatorUtils" %>
+<%@ page isELIgnored="false" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +39,9 @@
                 background-color: #f5f5f5;
             }
         </style>
+
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
+
     </head>
 
     <body>
@@ -48,15 +57,19 @@
             </div>
             <div class="ms-auto d-md-flex">
                 <div class="me-md-4 my-auto">
-                    <p class="text-success alert alert-secondary btn"><i class="fas fa-user text-danger"></i> &nbsp; ***</p>
+                    <p class="text-success alert alert-secondary btn"><i class="fas fa-user text-danger"></i> &nbsp
+                        abc@gmail.com
+                    </p>
                 </div>
                 <div class="d-flex mt-md-2">
                     <!-- <a href="#">
                     <h4 class="btn btn-outline-primary mx-2"> <i class="fas fa-user-edit"></i> Edit Profile</h4>
                     </a> -->
-                    <form action="" method="POST">
+                    <form:form action="${pageContext.request.contextPath}/logout" method="POST">
+
                         <button class="btn btn-outline-danger" type="submit" name="signout">Sign out <i class="fas fa-sign-out-alt"></i> </button>
-                    </form>
+
+                    </form:form>
                 </div>
             </div>
         </div>
@@ -70,7 +83,7 @@
                 <span class="fs-3">Operator **>1 </span> <span class="fs-3 ms-3 fw-bold">**</span>
             </div>
             <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <span class="btn btn-success"><i class="fas fa-plus"></i> &nbsp; Add ** Operator</span>
+                <span class="btn btn-success"><i class="fas fa-plus"></i> &nbsp; Add More Operator</span>
             </a>
         </div>
 
@@ -80,12 +93,14 @@
                 <h5 class="offcanvas-title" id="offcanvasExampleLabel">Operator Addition</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+
             <div class="offcanvas-body">
-                <form action="" method="POST">
+
+                <form:form action="operator-create" modelAttribute="register" method="POST">
                     <div>
                         <div class="form-floating my-3">
-                            <input type="text" name="name" class="form-control bottomplain" id="name" placeholder="Name">
-                            <label for="name"> <i class="fas fa-user text-success"></i> &nbsp; Name</label>
+                            <input type="text" name="full_name" class="form-control bottomplain" id="full_name" placeholder="Name">
+                            <label for="full_name"> <i class="fas fa-user text-success"></i> &nbsp; Name</label>
                         </div>
                         <div class="form-floating my-3">
                             <input type="text" name="phone" class="form-control bottomplain" id="phone" placeholder="phone">
@@ -103,40 +118,49 @@
                         <button class="btn btn-success col-12 mt-2" type="submit" name="addOperator"><i class="fas fa-plus"></i> &nbsp; Add Operator</button>
                     </div>
 
-                </form>
+                </form:form>
             </div>
         </div>
         <!-- add operator offcanvas end -->
 
+                <div class="row mt-4">
 
-        <div class="row mt-4">
+                    <c:forEach var="operator" items="${register}">
 
-            <div class="card m-1" style="width: 20rem;">
-                <img src="" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-bus text-secondary"></i> &nbsp; **</h5>
-                    <p class="card-text">Phone ** <br> E-mail: ** </p>
-                    <div class="col-12">
-                        <div class="d-flex mx-auto col-12">
-                            <button type="button" class="btn btn-success mb-1 col-12" data-bs-toggle="modal" data-bs-target="#exampleModaldetails">
-                                <i class="fas fa-info-circle"></i> &nbsp; View Details
-                            </button>
+                        <c:url var="updateLink" value="/admin/operator-update-form">
+                            <c:param name="operatorId" value="${operator.id}" />
+                        </c:url>
+
+                        <c:url var="deleteLink" value="/admin/operator-delete">
+                            <c:param name="operatorId" value="${operator.id}" />
+                        </c:url>
+
+
+                        <div class="card m-1" style="width: 20rem;">
+                            <img src="${pageContext.request.contextPath}/resources/bus/operator.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-bus text-secondary"></i> ${operator.full_name}</h5>
+                                <p class="card-text">Phone ${operator.phone} <br> E-mail: ${operator.email} </p>
+                                <div class="col-12">
+                                    <div class="d-flex mx-auto col-12">
+                                        <button type="button" class="btn btn-success mb-1 col-12" data-bs-toggle="modal" data-bs-target="#exampleModaldetails">
+                                            <i class="fas fa-info-circle"></i> &nbsp; View Details
+                                        </button>
+                                    </div>
+
+                                    <div class="d-flex">
+                                        <a href="${updateLink}" class="btn btn-primary col-6">
+                                            <i class="fas fa-edit"></i> &nbsp; Edit
+                                        </a>
+
+                                        <a href="${deleteLink}" class="btn btn-danger col-5 ms-auto">
+                                            <i class="fas fa-trash"></i> &nbsp; Delete
+                                        </a>
+                                        </div>
+                                </div>
+                            </div>
                         </div>
-
-                        <div class="d-flex">
-                            <button class="btn btn-primary col-6" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas " aria-controls=" ">
-                                <i class="fas fa-edit"></i> &nbsp; Edit
-                            </button>
-
-                            <button type="button" class="btn btn-danger col-5 ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal ">
-                                <i class="fas fa-trash"></i> &nbsp; Delete
-                            </button>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
+                    </c:forEach>
 
             <!-- details modal start -->
 
@@ -185,68 +209,88 @@
             </div>
             <!-- delete modal end -->
 
-            <!-- Edit offcanvas start -->
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas " aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel_c">**</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <form action=" " method="POST">
-                        <div>
-                            <div class="form-floating my-3">
-                                <input type="text" name="name" class="form-control bottomplain" id="name_c" placeholder="Name" value=" ">
-                                <label for="name"> <i class="fas fa-user text-success"></i> &nbsp; Name</label>
-                            </div>
-                            <div class="form-floating my-3">
-                                <input type="text" name="phone" class="form-control bottomplain" id="phone_c" placeholder="phone" value="  ">
-                                <label for="phone"> <i class="fas fa-phone text-success"></i> &nbsp; Phone</label>
-                            </div>
-                            <div class="form-floating my-3">
-                                <input type="text" name="email" class="form-control bottomplain" id="email_c" placeholder="email" value=" ">
-                                <label for="email"> <i class="fas fa-envelope text-success"></i> &nbsp; E-mail</label>
-                            </div>
-
-                            <input type="hidden" name="id" value=" ">
-                            <button class="btn btn-success col-12 mt-2" type="submit" name="updateOperator"><i class="fas fa-save"></i> &nbsp; Save Changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!-- edit offcanvas end -->
-
         </div>
     </div>
 
         <div class="container my-4">
 
-        <form action="" method="POST">
-            <div class="d-md-flex justify-content-between mb-5">
-                <div class="fs-3 my-auto">Check Reservation &nbsp;·</div>
-                <div class="col-md-3 col-12">
-                    <select class="form-select form-floating py-3 " name="coach" aria-label="Default select example">
-                        <option selected disabled>Select a coach</option>
+            <form action="" method="POST">
+                <div class="d-md-flex justify-content-between mb-5">
+                    <div class="fs-3 my-auto">Check Reservation &nbsp;·</div>
+                    <div class="col-md-3 col-12">
+                        <select class="form-select form-floating py-3 " name="coach" aria-label="Default select example">
+                            <option selected disabled>Select a coach</option>
 
-                        <option value="">***</option>
+                            <option value="">***</option>
 
-                    </select>
-                    <div id="validationServer05Feedback" class="invalid-feedback mb-2">
-                        <i class="fas fa-exclamation-triangle"></i> &nbsp;
-                        ***
+                        </select>
+                        <div id="validationServer05Feedback" class="invalid-feedback mb-2">
+                            <i class="fas fa-exclamation-triangle"></i> &nbsp;
+                            ***
+                        </div>
+                    </div>
+
+                    <div class="form-floating col-md-3 my-3 my-md-0 col-12">
+                        <input type="date" name="date" value="" class="form-control" id="date" placeholder="Date">
+                        <label for="date"> <i class="fas fa-clock text-success"></i> &nbsp; Date</label>
+                    </div>
+                    <div class="col-12 col-md-2 mt-md-1">
+                        <button type="submit" name="check" class="btn btn-lg btn-success col-12" value="Check">Check &nbsp; <i class="fas fa-check"></i> </button>
                     </div>
                 </div>
+            </form>
 
-                <div class="form-floating col-md-3 my-3 my-md-0 col-12">
-                    <input type="date" name="date" value="" class="form-control" id="date" placeholder="Date">
-                    <label for="date"> <i class="fas fa-clock text-success"></i> &nbsp; Date</label>
-                </div>
-                <div class="col-12 col-md-2 mt-md-1">
-                    <button type="submit" name="check" class="btn btn-lg btn-success col-12" value="Check">Check &nbsp; <i class="fas fa-check"></i> </button>
-                </div>
+        </div>
+
+        <div id="wrapper" style="margin-left: 100px">
+            <div id="header">
+                <h2 align:center>Operator List</h2>
             </div>
-        </form>
+        </div>
 
-    </div>
+        <div id="container" style="margin-left: 100px">
+
+            <div id="content">
+
+                <form:form action="search" method="GET">
+                    Search by operator phone: <input type="text" name="searchValue" />
+                    <input type="submit" value="Search" class="add-button" />
+                </form:form>
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <c:forEach var="operator" items="${register}">
+
+                        <c:url var="updateLink" value="/admin/operator-update-form">
+                            <c:param name="operatorId" value="${operator.id}" />
+                        </c:url>
+
+                        <c:url var="deleteLink" value="/admin/operator-delete">
+                            <c:param name="operatorId" value="${operator.id}" />
+                        </c:url>
+
+                        <tr>
+                            <td> ${operator.full_name} </td>
+                            <td> ${operator.phone} </td>
+                            <td> ${operator.email} </td>
+                            <td>
+                                <a href="${updateLink}">Update</a> | <a href="${deleteLink}">Delete</a>
+                            </td>
+                        </tr>
+
+                    </c:forEach>
+
+                </table>
+
+            </div>
+
+
 
     </body>
 </html>

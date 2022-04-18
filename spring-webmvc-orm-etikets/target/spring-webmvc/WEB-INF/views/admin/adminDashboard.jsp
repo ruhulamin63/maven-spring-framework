@@ -242,13 +242,13 @@
 
         </div>
 
-        <div id="wrapper" style="margin-left: 100px;">
+        <div id="wrapper" style="margin-left: 100px">
             <div id="header">
-                <h2>Operator List</h2>
+                <h2 align:center>Operator List</h2>
             </div>
         </div>
 
-        <div id="container" style="margin-left: 100px;">
+        <div id="container" style="margin-left: 100px">
 
             <div id="content">
 
@@ -280,7 +280,12 @@
                             <td> ${operator.phone} </td>
                             <td> ${operator.email} </td>
                             <td>
-                                <a href="${updateLink}">Update</a> | <a href="${deleteLink}">Delete</a>
+                                <a href="${updateLink}" class="btn btn-primary col-6">
+                                    <i class="fas fa-edit"></i> &nbsp; Edit
+                                </a>
+                                <a href="${deleteLink}" class="btn btn-danger col-5 ms-auto">
+                                    <i class="fas fa-trash"></i> &nbsp; Delete
+                                </a>
                             </td>
                         </tr>
 

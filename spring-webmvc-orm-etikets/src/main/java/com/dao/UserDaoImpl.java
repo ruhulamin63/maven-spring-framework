@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.model.Operator;
 import com.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -1,7 +1,6 @@
 package com.service;
 
 import com.model.Operator;
-import com.model.User;
 
 import java.util.List;
 

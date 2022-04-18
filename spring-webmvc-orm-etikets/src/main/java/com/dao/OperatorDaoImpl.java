@@ -18,11 +18,15 @@ public class OperatorDaoImpl implements OperatorDao {
         this.sessionFactory = sessionFactory;
     }
 
+    public Operator getOperator(String phone){
+        Session session = sessionFactory.getCurrentSession();
+        return (Operator) session.createQuery("from Operator where phone = :phone", Operator.class);
+    }
     @Override
     public List<Operator> getAll() {
         Session session = this.sessionFactory.getCurrentSession();
-        Query<Operator> userQuery = session.createQuery("from Operator", Operator.class);
-        List<Operator> operators = userQuery.getResultList();
+        Query<Operator> operatorQuery = session.createQuery("from Operator where user_type='operator'", Operator.class);
+        List<Operator> operators = operatorQuery.getResultList();
         return operators == null ? new ArrayList<Operator>() : operators;
     }
 

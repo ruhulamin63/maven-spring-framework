@@ -32,12 +32,6 @@ public class AdminController {
         webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-//    @RequestMapping("/home")
-//    public String index() {
-//        //This is test route
-//        return "admin/adminDashboard";
-//    }
-
     @RequestMapping("/home")
     public String index(Model model, @RequestParam(required = false) String sortKey) {
         List<Operator> operators = new ArrayList<>();
@@ -48,6 +42,8 @@ public class AdminController {
         else {
             operators = operatorService.getAll();
         }
+        System.out.println(operators);
+
         model.addAttribute("register", operators);
         return "admin/adminDashboard";
     }

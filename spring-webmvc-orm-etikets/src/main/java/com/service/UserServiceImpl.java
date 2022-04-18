@@ -3,8 +3,10 @@ package com.service;
 import com.dao.UserDao;
 import com.model.User;
 import com.util.SortUtils;
+import jdk.nashorn.internal.objects.NativeDebug;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sun.plugin.liveconnect.SecurityContextHelper;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserDao userDao;
+    private NativeDebug SecurityContextHolder;
 
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;

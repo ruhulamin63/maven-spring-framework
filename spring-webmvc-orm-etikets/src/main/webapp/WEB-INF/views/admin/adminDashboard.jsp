@@ -280,7 +280,12 @@
                             <td> ${operator.phone} </td>
                             <td> ${operator.email} </td>
                             <td>
-                                <a href="${updateLink}">Update</a> | <a href="${deleteLink}">Delete</a>
+                                <a href="${updateLink}" class="btn btn-primary col-6">
+                                    <i class="fas fa-edit"></i> &nbsp; Edit
+                                </a>
+                                <a href="${deleteLink}" class="btn btn-danger col-5 ms-auto">
+                                    <i class="fas fa-trash"></i> &nbsp; Delete
+                                </a>
                             </td>
                         </tr>
 

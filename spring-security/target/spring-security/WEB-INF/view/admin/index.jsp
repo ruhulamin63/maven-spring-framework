@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@include file="/WEB-INF/view/admin/layout/navbar/adminNavBar.jsp" %>
+<%@include file="/WEB-INF/views/admin/layout/navbar/adminNavBar.jsp" %>
 
     <!--begin::Main-->
     <div class="d-flex flex-column flex-root">

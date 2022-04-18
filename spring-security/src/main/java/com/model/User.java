@@ -1,10 +1,12 @@
 package com.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Student")
+@Table(name = "student")
 public class User {
 
     @Id

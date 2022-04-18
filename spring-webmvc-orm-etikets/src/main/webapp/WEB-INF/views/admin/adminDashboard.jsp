@@ -83,9 +83,9 @@
 
                 </span>
                 <span class="fs-3 ms-3 fw-bold">
-                    <c:forEach var="operator" items="${register}">
-                        ${operator}
-                    </c:forEach>
+<%--                    <c:forEach var="operator" items="${register}">--%>
+<%--                        ${operator}--%>
+<%--                    </c:forEach>--%>
                 </span>
             </div>
             <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
@@ -120,6 +120,7 @@
                                 <input type="password" name="password" class="form-control bottomplain" id="password" placeholder="password">
                                 <label for="password"> <i class="fas fa-key text-success"></i> &nbsp; Password</label>
                             </div>
+                            <input type="hidden" name="user_type" class="form-control bottomplain" id="user_type" placeholder="password" value="operator">
 
                             <button class="btn btn-success col-12 mt-2" type="submit" name="addOperator"><i class="fas fa-plus"></i> &nbsp; Add Operator</button>
                         </div>

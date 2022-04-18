@@ -30,17 +30,20 @@ public class Operator {
     @Column(name = "password")
     private String password;
 
+    @NotNull
+    @Column(name = "user_type")
     private String user_type;
 
     public Operator() {
     }
 
-    public Operator(int id, String full_name, String phone, String email, String password) {
+    public Operator(int id, String full_name, String phone, String email, String password, String user_type) {
         this.id = id;
         this.full_name = full_name;
         this.phone = phone;
         this.email = email;
         this.password = password;
+        this.user_type = user_type;
     }
 
     public int getId() {
@@ -78,8 +81,14 @@ public class Operator {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUser_type() {
+        return user_type;
+    }
+    public void setUser_type(String user_type) {
+        this.user_type = user_type;
     }
 }

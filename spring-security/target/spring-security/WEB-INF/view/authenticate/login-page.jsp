@@ -73,7 +73,7 @@
 
                 <div class="form-floating">
                     <input type="text" name="phone" class="form-control bottomplain " id="phone" placeholder="Phone Number" value="">
-                    <label for="phone"> <i class="fas fa-envelope"></i> &nbsp; E-mail address</label>
+                    <label for="phone"> <i class="fas fa-envelope"></i> &nbsp; Username</label>
                     <div id="validationServer05Feedback" class="invalid-feedback mb-2">
                         <i class="fas fa-exclamation-triangle"></i>
                     </div>

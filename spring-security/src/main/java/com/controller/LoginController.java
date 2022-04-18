@@ -2,12 +2,15 @@ package com.controller;
 
 import com.model.AuthModel;
 import com.model.User;
+import com.service.OperatorService;
+import com.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -24,14 +27,20 @@ public class LoginController {
 //        return "authenticate/login-page";
 //    }
 
+    private final UserService userService;
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
     @RequestMapping("/login")
-    public String login_index(@Valid @ModelAttribute("AuthModel") AuthModel authModel, BindingResult bindingResult) {
+    public String login_index(@Valid @ModelAttribute("AuthModel") AuthModel authModel, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            return "authenticate/login-page";
+            return "redirect:/login";
         }
         else {
             //userService.save(user);
-            return "redirect:/admin/adminDashboard";
+
+            request.getSession().setAttribute("User", userService.getAll());
+            return "redirect:/admin/home";
         }
     }
 

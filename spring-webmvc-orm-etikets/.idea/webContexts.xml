@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/adminDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/head/adminHead.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/head" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/navbar/adminNavBar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/layout/navbar" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/operator/operatorDashboard.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/operator" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/register-page.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
       </map>
     </option>

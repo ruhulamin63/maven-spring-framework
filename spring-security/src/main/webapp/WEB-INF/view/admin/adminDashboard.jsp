@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="com.util.SortUtils" %>
 <%@ page import="com.util.OperatorUtils" %>
 <%@ page isELIgnored="false" %>
@@ -75,7 +76,13 @@
         </div>
     </nav>
 
+        <!-- display user name and role -->
 
+        <p>
+            User: <security:authentication property="principal.username" />
+            <br><br>
+            Role(s): <security:authentication property="principal.authorities" />
+        </p>
 
         <div class="container">
         <div class="text-center d-flex justify-content-between">

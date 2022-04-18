@@ -76,141 +76,147 @@
     </nav>
 
 
-
         <div class="container">
-        <div class="text-center d-flex justify-content-between">
+            <div class="text-center d-flex justify-content-between">
             <div>
-                <span class="fs-3">Operator **>1 </span> <span class="fs-3 ms-3 fw-bold">**</span>
+                <span class="fs-3">Operator:
+
+                </span>
+                <span class="fs-3 ms-3 fw-bold">
+                    <c:forEach var="operator" items="${register}">
+                        ${operator.count}
+                    </c:forEach>
+                </span>
             </div>
             <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                 <span class="btn btn-success"><i class="fas fa-plus"></i> &nbsp; Add More Operator</span>
             </a>
         </div>
 
-        <!-- Add operator offcanvas -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Operator Addition</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <!-- Add operator offcanvas -->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Operator Addition</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body">
+
+                    <form:form action="operator-create" modelAttribute="register" method="POST">
+                        <div>
+                            <div class="form-floating my-3">
+                                <input type="text" name="full_name" class="form-control bottomplain" id="full_name" placeholder="Name">
+                                <label for="full_name"> <i class="fas fa-user text-success"></i> &nbsp; Name</label>
+                            </div>
+                            <div class="form-floating my-3">
+                                <input type="text" name="phone" class="form-control bottomplain" id="phone" placeholder="phone">
+                                <label for="phone"> <i class="fas fa-phone text-success"></i> &nbsp; Phone</label>
+                            </div>
+                            <div class="form-floating my-3">
+                                <input type="text" name="email" class="form-control bottomplain" id="email" placeholder="email">
+                                <label for="email"> <i class="fas fa-envelope text-success"></i> &nbsp; E-mail</label>
+                            </div>
+                            <div class="form-floating my-3">
+                                <input type="password" name="password" class="form-control bottomplain" id="password" placeholder="password">
+                                <label for="password"> <i class="fas fa-key text-success"></i> &nbsp; Password</label>
+                            </div>
+
+                            <button class="btn btn-success col-12 mt-2" type="submit" name="addOperator"><i class="fas fa-plus"></i> &nbsp; Add Operator</button>
+                        </div>
+
+                    </form:form>
+                </div>
             </div>
-
-            <div class="offcanvas-body">
-
-                <form:form action="operator-create" modelAttribute="register" method="POST">
-                    <div>
-                        <div class="form-floating my-3">
-                            <input type="text" name="full_name" class="form-control bottomplain" id="full_name" placeholder="Name">
-                            <label for="full_name"> <i class="fas fa-user text-success"></i> &nbsp; Name</label>
-                        </div>
-                        <div class="form-floating my-3">
-                            <input type="text" name="phone" class="form-control bottomplain" id="phone" placeholder="phone">
-                            <label for="phone"> <i class="fas fa-phone text-success"></i> &nbsp; Phone</label>
-                        </div>
-                        <div class="form-floating my-3">
-                            <input type="text" name="email" class="form-control bottomplain" id="email" placeholder="email">
-                            <label for="email"> <i class="fas fa-envelope text-success"></i> &nbsp; E-mail</label>
-                        </div>
-                        <div class="form-floating my-3">
-                            <input type="password" name="password" class="form-control bottomplain" id="password" placeholder="password">
-                            <label for="password"> <i class="fas fa-key text-success"></i> &nbsp; Password</label>
-                        </div>
-
-                        <button class="btn btn-success col-12 mt-2" type="submit" name="addOperator"><i class="fas fa-plus"></i> &nbsp; Add Operator</button>
-                    </div>
-
-                </form:form>
-            </div>
-        </div>
-        <!-- add operator offcanvas end -->
+            <!-- add operator offcanvas end -->
 
                 <div class="row mt-4">
 
-                    <c:forEach var="operator" items="${register}">
+                        <c:forEach var="operator" items="${register}">
 
-                        <c:url var="updateLink" value="/admin/operator-update-form">
-                            <c:param name="operatorId" value="${operator.id}" />
-                        </c:url>
+                            <c:url var="updateLink" value="/admin/operator-update-form">
+                                <c:param name="operatorId" value="${operator.id}" />
+                            </c:url>
 
-                        <c:url var="deleteLink" value="/admin/operator-delete">
-                            <c:param name="operatorId" value="${operator.id}" />
-                        </c:url>
+                            <c:url var="deleteLink" value="/admin/operator-delete">
+                                <c:param name="operatorId" value="${operator.id}" />
+                            </c:url>
 
 
-                        <div class="card m-1" style="width: 20rem;">
-                            <img src="${pageContext.request.contextPath}/resources/bus/operator.png" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-bus text-secondary"></i> ${operator.full_name}</h5>
-                                <p class="card-text">Phone ${operator.phone} <br> E-mail: ${operator.email} </p>
-                                <div class="col-12">
-                                    <div class="d-flex mx-auto col-12">
-                                        <button type="button" class="btn btn-success mb-1 col-12" data-bs-toggle="modal" data-bs-target="#exampleModaldetails">
-                                            <i class="fas fa-info-circle"></i> &nbsp; View Details
-                                        </button>
-                                    </div>
-
-                                    <div class="d-flex">
-                                        <a href="${updateLink}" class="btn btn-primary col-6">
-                                            <i class="fas fa-edit"></i> &nbsp; Edit
-                                        </a>
-
-                                        <a href="${deleteLink}" class="btn btn-danger col-5 ms-auto">
-                                            <i class="fas fa-trash"></i> &nbsp; Delete
-                                        </a>
+                            <div class="card m-1" style="width: 20rem;">
+                                <img src="${pageContext.request.contextPath}/resources/bus/operator.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><i class="fas fa-bus text-secondary"></i> ${operator.full_name}</h5>
+                                    <p class="card-text">Phone ${operator.phone} <br> E-mail: ${operator.email} </p>
+                                    <div class="col-12">
+                                        <div class="d-flex mx-auto col-12">
+                                            <button type="button" class="btn btn-success mb-1 col-12" data-bs-toggle="modal" data-bs-target="#exampleModaldetails">
+                                                <i class="fas fa-info-circle"></i> &nbsp; View Details
+                                            </button>
                                         </div>
+
+                                        <div class="d-flex">
+                                            <a href="${updateLink}" class="btn btn-primary col-6">
+                                                <i class="fas fa-edit"></i> &nbsp; Edit
+                                            </a>
+
+                                            <a href="${deleteLink}" class="btn btn-danger col-5 ms-auto">
+                                                <i class="fas fa-trash"></i> &nbsp; Delete
+                                            </a>
+                                            </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
 
-            <!-- details modal start -->
+                <!-- details modal start -->
 
-            <div class="modal fade" id="exampleModaldetails " tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">**</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
+                <div class="modal fade" id="exampleModaldetails " tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">**</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
 
 
-                            <h4>Total bus : **</h4>
-                            <h4>Total Revenue : **</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- details modal end -->
-
-            <!-- delete modal start -->
-            <div class="modal fade" id="exampleModal " tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel_c">Deleting **</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure want to Delete <strong>**</strong>?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <form action="" method="POST">
-                                <input type="hidden" name="operatorid" value=" ">
-                                <button type="submit" name="deleteOperator" class="btn btn-danger px-2 ms-2"><i class="fas fa-trash"></i> &nbsp; Delete</button>
-                            </form>
+                                <h4>Total bus : **</h4>
+                                <h4>Total Revenue : **</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- delete modal end -->
 
+                <!-- details modal end -->
+
+                <!-- delete modal start -->
+                <div class="modal fade" id="exampleModal " tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel_c">Deleting **</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure want to Delete <strong>**</strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="operatorid" value=" ">
+                                    <button type="submit" name="deleteOperator" class="btn btn-danger px-2 ms-2"><i class="fas fa-trash"></i> &nbsp; Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- delete modal end -->
+
+            </div>
         </div>
-    </div>
 
         <div class="container my-4">
 
@@ -244,7 +250,7 @@
 
         <div id="wrapper" style="margin-left: 100px">
             <div id="header">
-                <h2 align:center>Operator List</h2>
+                <h2 text-align:center>Operator List</h2>
             </div>
         </div>
 
@@ -294,8 +300,6 @@
                 </table>
 
             </div>
-
-
-
+        </div>
     </body>
 </html>

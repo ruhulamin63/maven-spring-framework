@@ -60,7 +60,7 @@
                     </tbody>
                 </table>
             </form:form>
-            <div style="clear; both;"></div>
+            <div style="clear: both;"></div>
 
             <p>
                 <a href="${pageContext.request.contextPath}/admin/home">Back to List</a>

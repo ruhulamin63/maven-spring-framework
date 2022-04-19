@@ -1,18 +1,16 @@
 package com.controller;
 
-import com.model.User;
-import com.service.UserService;
+import com.model.StudentModel;
+import com.service.StudentService;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +18,9 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
+    private final StudentService userService;
 
-    public UserController(UserService userService) {
+    public UserController(StudentService userService) {
         this.userService = userService;
     }
 
@@ -34,11 +32,12 @@ public class UserController {
 
     @RequestMapping("/list")
     public String list(Model model, @RequestParam(required = false) String sortKey) {
-        List<User> users = new ArrayList<>();
+        List<StudentModel> users = new ArrayList<>();
         if (sortKey != null) {
             int field = Integer.parseInt(sortKey);
             users = userService.sort(field);
-        } else {
+        }
+        else {
             users = userService.getAll();
         }
         model.addAttribute("users", users);
@@ -47,32 +46,26 @@ public class UserController {
 
     @RequestMapping("/user-create-form")
     public String userCreateForm(Model model) {
-        User user = new User();
+        StudentModel user = new StudentModel();
         model.addAttribute("user", user);
         return "create-user-form";
     }
 
     @RequestMapping("/create")
-    public String create(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-
-            return "create-user-form";
-        }
-        else {
-            userService.save(user);
-            return "redirect:/user/list";
-        }
+    public String create(@ModelAttribute("user") StudentModel user) {
+        userService.save(user);
+        return "redirect:/user/list";
     }
 
     @RequestMapping("/user-update-form")
     public String userUpdateForm(@RequestParam("userId") int id, Model model) {
-        User user = userService.get(id);
+        StudentModel user = userService.get(id);
         model.addAttribute("user", user);
         return "update-user-form";
     }
 
     @RequestMapping("/update")
-    public String update(@ModelAttribute("user") User user) {
+    public String update(@ModelAttribute("user") StudentModel user) {
         userService.update(user);
         return "redirect:/user/list";
     }
@@ -85,10 +78,11 @@ public class UserController {
 
     @RequestMapping("/search")
     public String search(@RequestParam(name = "searchValue", required = false) String firstname, Model model) {
-        List<User> users = new ArrayList<>();
+        List<StudentModel> users = new ArrayList<>();
         if (firstname == null) {
             users = userService.getAll();
-        } else {
+        }
+        else {
             users = userService.getAll(firstname);
         }
         model.addAttribute("users", users);

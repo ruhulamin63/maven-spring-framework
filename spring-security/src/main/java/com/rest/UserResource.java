@@ -1,7 +1,7 @@
 package com.rest;
 
-import com.model.User;
-import com.service.UserService;
+import com.model.StudentModel;
+import com.service.StudentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,14 +12,14 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserResource {
 
-    private UserService userService;
+    private StudentService userService;
 
-    public UserResource(UserService userService) {
+    public UserResource(StudentService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/users")
-    public List<User> getAll() {
+    public List<StudentModel> getAll() {
         return userService.getAll();
     }
 }

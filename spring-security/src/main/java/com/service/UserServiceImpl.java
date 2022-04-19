@@ -1,7 +1,6 @@
 package com.service;
-
 import com.dao.UserDao;
-import com.model.User;
+import com.model.UserModel;
 import com.util.SortUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,22 +19,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<User> getAll() {
+    public List<UserModel> getAll() {
         return userDao.getAll();
     }
 
     @Override
-    public void save(User user) {
+    public void save(UserModel user) {
         userDao.save(user);
     }
 
     @Override
-    public User get(int id) {
+    public UserModel get(int id) {
         return userDao.get(id);
     }
 
     @Override
-    public void update(User user) {
+    public void update(UserModel user) {
         userDao.update(user);
     }
 
@@ -45,12 +44,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll(String firstName) {
+    public List<UserModel> getAll(String firstName) {
         return userDao.getAll(firstName);
     }
 
     @Override
-    public List<User> sort(int sortKey) {
+    public List<UserModel> sort(int sortKey) {
         String key = "";
         switch (sortKey) {
             case SortUtils.FIRST_NAME:

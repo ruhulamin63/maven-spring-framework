@@ -10,7 +10,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="com.util.SortUtils" %>
-<%@ page import="com.util.OperatorUtils" %>
+<%@ page import="com.util.UserUtils" %>
 <%@ page isELIgnored="false" %>
 
 
@@ -132,22 +132,22 @@
 
                 <div class="row mt-4">
 
-                    <c:forEach var="operator" items="${register}">
+                    <c:forEach var="user" items="${register}">
 
                         <c:url var="updateLink" value="/admin/operator-update-form">
-                            <c:param name="operatorId" value="${operator.id}" />
+                            <c:param name="operatorId" value="${user.id}" />
                         </c:url>
 
                         <c:url var="deleteLink" value="/admin/operator-delete">
-                            <c:param name="operatorId" value="${operator.id}" />
+                            <c:param name="userId" value="${user.id}" />
                         </c:url>
 
 
                         <div class="card m-1" style="width: 20rem;">
                             <img src="${pageContext.request.contextPath}/resources/bus/operator.png" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title"><i class="fas fa-bus text-secondary"></i> ${operator.full_name}</h5>
-                                <p class="card-text">Phone ${operator.phone} <br> E-mail: ${operator.email} </p>
+                                <h5 class="card-title"><i class="fas fa-bus text-secondary"></i> ${user.full_name}</h5>
+                                <p class="card-text">Phone ${user.phone} <br> E-mail: ${user.email} </p>
                                 <div class="col-12">
                                     <div class="d-flex mx-auto col-12">
                                         <button type="button" class="btn btn-success mb-1 col-12" data-bs-toggle="modal" data-bs-target="#exampleModaldetails">
@@ -272,20 +272,20 @@
                         <th>Action</th>
                     </tr>
 
-                    <c:forEach var="operator" items="${register}">
+                    <c:forEach var="user" items="${register}">
 
                         <c:url var="updateLink" value="/admin/operator-update-form">
-                            <c:param name="operatorId" value="${operator.id}" />
+                            <c:param name="userId" value="${user.id}" />
                         </c:url>
 
                         <c:url var="deleteLink" value="/admin/operator-delete">
-                            <c:param name="operatorId" value="${operator.id}" />
+                            <c:param name="userId" value="${user.id}" />
                         </c:url>
 
                         <tr>
-                            <td> ${operator.full_name} </td>
-                            <td> ${operator.phone} </td>
-                            <td> ${operator.email} </td>
+                            <td> ${user.full_name} </td>
+                            <td> ${user.phone} </td>
+                            <td> ${user.email} </td>
                             <td>
                                 <a href="${updateLink}">Update</a> | <a href="${deleteLink}">Delete</a>
                             </td>
@@ -296,8 +296,7 @@
                 </table>
 
             </div>
-
-
+        </div>
 
     </body>
 </html>

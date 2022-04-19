@@ -1,6 +1,6 @@
 package com.dao;
 
-import com.model.User;
+import com.model.UserModel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -19,48 +19,48 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAll() {
+    public List<UserModel> getAll() {
         Session session = this.sessionFactory.getCurrentSession();
-        Query<User> userQuery = session.createQuery("from User", User.class);
-        List<User> users = userQuery.getResultList();
-        return users == null ? new ArrayList<User>() : users;
+        Query<UserModel> userQuery = session.createQuery("from UserModel", UserModel.class);
+        List<UserModel> userModel = userQuery.getResultList();
+        return userModel == null ? new ArrayList<UserModel>() : userModel;
     }
 
     @Override
-    public void save(User user) {
+    public void save(UserModel userModel) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.save(user);
+        session.save(userModel);
     }
 
     @Override
-    public User get(int id) {
+    public UserModel get(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        return session.get(User.class, id);
+        return session.get(UserModel.class, id);
     }
 
     @Override
-    public void update(User user) {
+    public void update(UserModel userModel) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.update(user);
+        session.update(userModel);
     }
 
     @Override
     public void delete(int id) {
-        User user = get(id);
-        sessionFactory.getCurrentSession().delete(user);
+        UserModel userModel = get(id);
+        sessionFactory.getCurrentSession().delete(userModel);
     }
 
     @Override
-    public List<User> getAll(String firstName) {
+    public List<UserModel> getAll(String phone) {
         Session session = sessionFactory.getCurrentSession();
-        Query<User> userQuery = session.createQuery("from User where firstName like '%" + firstName + "%'", User.class);
-        return userQuery.getResultList();
+        Query<UserModel> operatorQuery = session.createQuery("from UserModel where phone like '%" + phone + "%'", UserModel.class);
+        return operatorQuery.getResultList();
     }
 
     @Override
-    public List<User> sort(String sortKey) {
+    public List<UserModel> sort(String sortKey) {
         Session session = sessionFactory.getCurrentSession();
-        Query<User> userQuery = session.createQuery("from User order by " + sortKey, User.class);
-        return userQuery.getResultList();
+        Query<UserModel> operatorQuery = session.createQuery("from UserModel order by " + sortKey, UserModel.class);
+        return operatorQuery.getResultList();
     }
 }

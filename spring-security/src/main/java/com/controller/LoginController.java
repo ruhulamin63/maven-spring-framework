@@ -1,9 +1,7 @@
 package com.controller;
 
 import com.model.AuthModel;
-import com.model.User;
-import com.service.OperatorService;
-import com.service.UserService;
+import com.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +25,8 @@ public class LoginController {
 //        return "authenticate/login-page";
 //    }
 
-    private final UserService userService;
-    public LoginController(UserService userService) {
+    private final StudentService userService;
+    public LoginController(StudentService userService) {
         this.userService = userService;
     }
     @RequestMapping("/login")
@@ -45,7 +43,7 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/register-page")
+    @RequestMapping("/register")
     public String Register() {
         return "authenticate/register-page";
     }

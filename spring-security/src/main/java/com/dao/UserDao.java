@@ -1,22 +1,22 @@
 package com.dao;
 
-import com.model.User;
+import com.model.UserModel;
 
 import java.util.List;
 
 public interface UserDao {
 
-    public List<User> getAll();
+    public List<UserModel> getAll();
 
-    public void save(User user);
+    public void save(UserModel operator);
 
-    public User get(int id);
+    public UserModel get(int id);
 
-    public void update(User user);
+    public void update(UserModel operator);
 
     public void delete(int id);
 
-    public List<User> getAll(String firstName);
+    public List<UserModel> getAll(String phone);
 
-    public List<User> sort(String sortKey);
+    public List<UserModel> sort(String sortKey);
 }
